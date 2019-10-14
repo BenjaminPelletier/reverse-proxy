@@ -1,0 +1,39 @@
+# This content will be included in an nginx `http` block
+
+# Update and/or add `upstream` entries for all local services
+
+upstream internal_service_1 {
+  server 192.168.0.1:8080;
+}
+
+upstream internal_service_2 {
+  server 192.168.0.2:8080;
+}
+
+# Update and/or add `server` entries for all external server addreses to handle with local services
+
+server {
+  listen 80;
+
+  server_name example1.com;
+
+  location / {
+    proxy_pass http://internal_service_1/;
+  }
+
+  # This line logs accesses to this service
+  access_log /var/log/nginx/access.log main;
+}
+
+server {
+  listen 80;
+
+  server_name example2.com;
+
+  location / {
+    proxy_pass http://internal_service_2/;
+  }
+
+  # This line logs accesses to this service
+  access_log /var/log/nginx/access.log main;
+}
