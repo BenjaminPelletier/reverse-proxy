@@ -30,7 +30,7 @@ At this point, the docker container running the reverse proxy will restart autom
 
 Let's Encrypt certificates expire after 90 days.  To set up your system to automatically renew them:
 
-* `crontab -l | { cat; echo "0 1,13 0 0 0 $PWD/renew_certs.sh >> $PWD/cert_renewals.log 2>&1"; } | crontab -`
+* `crontab -l | { cat; echo "0 1,13 * * * $PWD/renew_certs.sh >> $PWD/cert_renewals.log 2>&1"; } | crontab -`
 
 This triggers a renewal check once every 12 hours.  Note that this crontab entry can be removed with `crontab -e`.
 
@@ -43,7 +43,7 @@ This triggers a renewal check once every 12 hours.  Note that this crontab entry
 
 ### HTTP site cannot be reached in Chrome
 
-If you previously browsed, e.g., example.com using https (i.e.: https://example.com) then later try to browse it using http (i.e.: http://9860.co), Chrome will indicate "This site can't be reached" and "example.com refused to connect".  To fix this, open an incognito window and then navigate to http://example.com.
+If you previously browsed, e.g., example.com using https (i.e.: https://example.com) then later try to browse it using http (i.e.: http://example.com), Chrome will indicate "This site can't be reached" and "example.com refused to connect".  To fix this, open an incognito window and then navigate to http://example.com.
 
 ### Enabling more verbose nginx logs
 
