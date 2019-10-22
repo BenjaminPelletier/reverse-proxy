@@ -30,7 +30,7 @@ At this point, the docker container running the reverse proxy will restart autom
 
 Let's Encrypt certificates expire after 90 days.  To set up your system to automatically renew them:
 
-* `crontab -l | { cat; echo "0 1,13 * * * $PWD/renew_certs.sh >> $PWD/cert_renewals.log 2>&1"; } | crontab -`
+* `crontab -l | { cat; echo "0 */12 * * * $PWD/renew_certs.sh >> $PWD/cert_renewals.log 2>&1"; } | crontab -`
 
 This triggers a renewal check once every 12 hours.  Note that this crontab entry can be removed with `crontab -e`.
 

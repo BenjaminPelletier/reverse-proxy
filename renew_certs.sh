@@ -1,3 +1,4 @@
+#!/bin/bash
 echo === `date` ===
-docker container exec -it reverseproxy certbot renew
+docker container exec -i reverseproxy certbot renew
 echo

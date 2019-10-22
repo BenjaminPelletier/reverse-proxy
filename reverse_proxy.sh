@@ -1,3 +1,4 @@
+#!/bin/bash
 docker run \
   --log-driver json-file \
   --log-opt max-size=10m \
